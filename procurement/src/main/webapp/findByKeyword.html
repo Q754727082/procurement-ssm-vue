@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>采购信息网滚动刷新</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<body>
+
+<div id="keyword">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID编号</th>
+            <th>公告名称</th>
+            <th>项目名称</th>
+            <th>地址</th>
+            <th>时间</th>
+            <th>采购人</th>
+            <th>品目</th>
+            <th>采购单位</th>
+            <th>行政区域</th>
+            <th>公告时间</th>
+            <th>评审专家名单</th>
+            <th>总中标金额</th>
+            <th>项目联系人</th>
+            <th>项目联系电话</th>
+            <th>采购单位</th>
+            <th>采购单位地址</th>
+            <th>采购单位联系方式</th>
+            <th>代理机构名称</th>
+            <th>代理机构地址</th>
+            <th>代理机构联系方式</th>
+            <th>类型</th>
+            <th>链接地址</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(z) in zhaobiaoList">
+            <td>{{z.id}}</td>
+            <td>{{z.announcementName}}</td>
+            <td>{{z.projectName}}</td>
+            <td>{{z.address}}</td>
+            <td>{{z.time}}</td>
+            <td>{{z.buyer}}</td>
+            <td >{{z.item}}</td>
+            <td >{{z.purchasingUnit}}</td>
+            <td >{{z.administrative}}</td>
+            <td >{{z.announcementTime}}</td>
+            <td >{{z.expert}}</td>
+            <td >{{z.amount}}</td>
+            <td >{{z.contactPerson}}</td>
+            <td >{{z.contactNumber}}</td>
+            <td >{{z.xPurchasingUnit}}</td>
+            <td >{{z.unitAddress}}</td>
+            <td >{{z.unitContact}}</td>
+            <td >{{z.nameOfAgent}}</td>
+            <td >{{z.agencyAddress}}</td>
+            <td >{{z.agentContact}}</td>
+            <td >{{z.type}}</td>
+            <td >{{z.url}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/procurement/js/vuejs-2.5.16.js"></script>
+<script src="/procurement/js/axios-0.18.0.js"></script>
+<script src="/procurement/js/findByKeyword.js"></script>
+
+</body>
+</html>

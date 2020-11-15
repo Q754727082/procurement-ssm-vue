@@ -1,0 +1,219 @@
+﻿<html>
+<head>
+ <meta charset="UTF-8">
+    <title>招标详细数据</title>
+    <style>
+        .vF_detail_header{
+            text-align:center;
+        }
+        .tc{
+            font-size: 26px;
+            line-height: 36px;
+            font-weight: bolder;
+            color: #383940;
+            text-align: center;
+        }
+        .pubTime{
+            text-align: center;
+            color: #707070;
+            font-size: 13px;
+        }
+        .tab2{
+            margin: 0 auto;
+            width: 700px;
+            margin-top: 20px;
+            color: #383838;
+        }
+        h5{
+            line-height: 24px;
+            font-size: 14px;
+            color: #a00000;
+            font-weight: bolder;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        table{
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-right: 1px solid #bfbfbf;
+            border-bottom: 1px solid #bfbfbf;
+            width: 100%;
+        }
+
+        td{
+            width: 128px;
+            padding: 5px;
+            font-size: 14px;
+            border-left: 1px solid #bfbfbf;
+            border-top: 1px solid #bfbfbf;
+            background: white;
+            padding-right: 3px;
+            font-weight: bolder;
+        }
+        .title {
+            text-align: center;
+            background: #F4F4FF;
+            padding-right: 3px;
+            font-weight: normal;
+            width: 128px;
+        }
+        .link{
+            margin-left: 900px;
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<div class="vF_detail_header">
+    <h2 class="tc"></h2>
+    <p>
+        <span id="pubTime"></span>
+    </p>
+</div>
+<!--contentTable-->
+<div class="tab2" style="display: block;">
+    <h5>公告摘要：</h5>
+    <table width="600" border="0" cellspacing="1" bgcolor="#bfbfbf" style="text-align:left;">
+        <tbody>
+        <tr><td colspan="4">
+            <b>公告详细：</b>
+        </td></tr>
+        <tr>
+            <td class="title">采购项目名称</td>
+            <td colspan="3" width="430" id="projectName"></td>
+        </tr>
+        <tr>
+            <td class="title">品目</td>
+            <td colspan="3">
+
+                <p id="item"></p>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="title">采购单位</td>
+            <td colspan="3" id="purchasingUnit"></td>
+        </tr>
+        <tr>
+            <td class="title">行政区域</td>
+            <td width="168" id="administrative"></td>
+            <td class="title">公告时间</td>
+            <td width="168" id="announcementTime"></td>
+        </tr>
+        <tr>
+            <td class="title">获取招标文件时间</td>
+            <td colspan="3" id="tenderTime"></td>
+        </tr>
+        <tr>
+            <td class="title">招标文件售价</td>
+            <td colspan="3" id="documentPrice"></td>
+        </tr>
+        <tr>
+            <td class="title">获取招标文件的地点</td>
+            <td colspan="3" id="placeTender"></td>
+        </tr>
+        <tr>
+            <td class="title">开标时间</td>
+            <td colspan="3" id="openingTime"></td>
+        </tr>
+        <tr>
+            <td class="title">开标地点</td>
+            <td colspan="3" id="openingPlace"></td>
+        </tr>
+        <tr>
+            <td class="title">预算金额</td>
+            <td colspan="3" id="budgetAmount"></td>
+        </tr>
+        <tr>
+            <td colspan="4"><b>联系人及联系方式：</b></td>
+        </tr>
+        <tr>
+            <td class="title">项目联系人</td>
+            <td colspan="3" id="contactPerson"></td>
+        </tr>
+        <tr>
+            <td class="title">项目联系电话</td>
+            <td colspan="3" id="contactNumber"></td>
+        </tr>
+        <tr>
+            <td class="title" >采购单位</td>
+            <td colspan="3" id="xPurchasingUnit"></td>
+        </tr>
+        <tr>
+            <td class="title">采购单位地址</td>
+            <td colspan="3" id="unitAddress"></td>
+        </tr>
+        <tr><td class="title">采购单位联系方式</td>
+            <td colspan="3" id="unitContact"></td>
+        </tr>
+        <tr>
+            <td class="title">代理机构名称</td>
+            <td colspan="3" id="nameOfAgent"></td>
+        </tr>
+        <tr>
+            <td class="title">代理机构地址</td>
+            <td colspan="3" id="agencyAddress"></td>
+        </tr>
+        <tr>
+            <td class="title">代理机构联系方式</td>
+            <td colspan="3" id="agentContact"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <a id="loc" class="link">详情请点击</a>
+
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        var id = getQueryString('id');
+        console.log('id:' + id);
+        $.get("/procurement/zhaobiao/selectOne.do",{id:id}, function(data) {
+
+            $("h2").html(data.announcementName);
+            $("#administrative").html(data.administrative);
+            $("#pubTime").html(data.time);
+            $("#announcementTime").html(data.announcementTime);
+            $("#projectName").html(data.projectName);
+            $("#item").html(data.item);
+            $("#purchasingUnit").html(data.purchasingUnit);
+            $("#tenderTime").html(data.tenderTime);
+            $("#documentPrice").html(data.documentPrice);
+            $("#placeTender").html(data.placeTender);
+            $("#openingTime").html(data.openingTime);
+            $("#openingPlace").html(data.openingPlace);
+            $("#budgetAmount").html(data.budgetAmount);
+            $("#contactPerson").html(data.contactPerson);
+            $("#contactNumber").html(data.contactNumber);
+            $("#xPurchasingUnit").html(data.xPurchasingUnit);
+            $("#unitAddress").html(data.unitAddress);
+            $("#unitContact").html(data.unitContact);
+            $("#nameOfAgent").html(data.nameOfAgent);
+            $("#agencyAddress").html(data.agencyAddress);
+            $("#agentContact").html(data.agentContact);
+
+            $("#loc").attr("href",data.url);
+        }, "json");
+    })
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

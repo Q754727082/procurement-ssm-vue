@@ -1,0 +1,132 @@
+﻿<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .vF_detail_header{
+            text-align:center;
+        }
+        .tc{
+            font-size: 26px;
+            line-height: 36px;
+            font-weight: bolder;
+            color: #383940;
+            text-align: center;
+        }
+        .pubTime{
+            text-align: center;
+            color: #707070;
+            font-size: 13px;
+        }
+        .tab2{
+            margin: 0 auto;
+            width: 1200px;
+            margin-top: 20px;
+            color: #383838;
+        }
+        h5{
+            line-height: 24px;
+            font-size: 14px;
+            color: #a00000;
+            font-weight: bolder;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        table{
+            border-collapse: collapse;
+            border-spacing: 0;
+            border-right: 1px solid #bfbfbf;
+            border-bottom: 1px solid #bfbfbf;
+            width: 100%;
+        }
+
+        td{
+            width: 128px;
+            padding: 5px;
+            font-size: 14px;
+            border-left: 1px solid #bfbfbf;
+            border-top: 1px solid #bfbfbf;
+            background: white;
+            padding-right: 3px;
+            font-weight: bolder;
+        }
+        .title {
+            text-align: center;
+            background: #F4F4FF;
+            padding-right: 3px;
+            font-weight: normal;
+            width: 128px;
+        }
+        .link{
+            margin-left: 900px;
+            font-size: 25px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<div class="vF_detail_header" style="margin-top: 66px;">
+    <h2 class="tc"></h2>
+    <p>
+        <span id="pubTime"></span>
+    </p>
+</div>
+<!--contentTable-->
+<div class="tab2" style="display: block;">
+    <h5>公告概要：</h5>
+    <table width="600" border="0" cellspacing="1" bgcolor="#bfbfbf" style="text-align:left;">
+        <tbody>
+        <tr>
+            <td colspan="4"><b>公告信息：</b>
+        </td>
+        </tr>
+        <tr>
+            <td class="title">公告类型</td>
+            <td colspan="3" id="annoType"></td>
+        </tr>
+        <tr>
+            <td class="title">详细数据</td>
+            <td colspan="3" id="gxxText"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+    <a id="loc" class="link">详情请点击</a>
+
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $(function () {
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        var id = getQueryString('id');
+        console.log('id:' + id);
+        $.get("/procurement/zhaobiao/selectOne.do",{id:id}, function(data) {
+
+            $("h2").html(data.announcementName);
+            $("#pubTime").html(data.time);
+            $("#annoType").html(data.annoType);
+            $("#gxxText").html(data.gxxText);
+
+            $("title").html(data.announcementName);
+            $("#loc").attr("href",data.url);
+        }, "json");
+    })
+
+</script>
+</body>
+</html>
+
+
+
+
+
+

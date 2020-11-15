@@ -1,0 +1,109 @@
+*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		text-decoration: none;
+	}
+	.box{
+
+	}
+	.zb img{
+		display: inline-block;
+		height: auto;
+		width: 100%;
+	}
+	
+	a{
+		text-decoration: none;
+		
+	}
+	.ul1 a:hover{
+		color: white;
+		text-decoration: none;
+	}
+	.ul1 li:hover{
+		background-color:#4F94CD;
+	}
+	.ss{
+		width: 1100px;
+		margin: 0 auto;
+	}
+	.ss ul{
+		display: flex;
+		margin-top: 30px;
+	}
+	.cs{
+		border: 1px solid gainsboro;
+		
+		width: 1100px;
+		margin: 0 auto;
+		margin-top: 30px;
+	}
+	.cs1{
+		display: flex;
+		width: 1100px;
+		margin: 0 auto;
+	}
+	.ul{
+		display: flex;
+		flex-wrap: wrap;
+		margin-left: 10px;
+	}
+	.ul li{
+		height: 26px;
+		width: 90px;
+		line-height: 40px;
+		
+	}
+	a{
+		display: inline-block;
+		
+		height: 22px;
+	}
+	.ul1{
+		
+		display: flex;
+		
+		flex-wrap: wrap;
+		
+	}
+	.ul1 li{
+		
+		height: 22px;
+		margin: 10px;
+		border-radius:2px ;
+		font-size: 12px;
+		text-align: center;
+		line-height: 22px;
+	}
+	.tli{
+		background-color: #4F94CD;
+	}
+	.csbox .ul1{
+		border: 1px solid gainsboro;
+		width: 564px;
+	}
+	.ul2{
+		display: flex;
+		margin-top: 10px;
+		
+	}
+	.sp{
+		display: inline-block;
+		height: 24px;
+		background-color:#C00;
+		color: white;
+		border-radius:2px ;
+		margin-left: 6px;
+		margin-right: 6px;
+	}
+	.sp1{
+		display: inline-block;
+		height: 24px;
+		background-color: #4F94CD;
+		color: white;
+		border-radius:2px ;
+		margin-left: 6px;
+		margin-right: 6px;
+	}
+	

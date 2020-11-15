@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>仿百度搜索框</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        #keyword {
+            margin-left: 600px;
+            width: 800px;
+            height: 35px;
+            border: 1px solid #c3c3c3;
+        }
+
+        #button {
+            width: 85px;
+            height: 37px;
+            border: 1px solid #c3c3c3;
+        }
+
+        #box {
+            margin-left: 600px;
+            width: 800px;
+            border: 1px solid #c3c3c3;
+            display: none;
+            text-align: left
+        }
+    </style>
+    <script>
+        $(function() {
+            //0.键盘抬起事件 通过div中的ID获取input输入框
+            $("#keyword").keyup(function() {
+                    $("#box").empty();
+                    //1.用trim()获取去除空格后的输入框的值
+                    var keyword = $(this).val().trim();
+
+                    //判断用户输入的是否为空,如果为空不发送ajax
+                    if (keyword != null && keyword != "") {
+                        //2 发送ajax
+                        $.get("/procurement/zhaobiao/selectTenByLucene.do",{keyword:keyword}, function(data) {
+
+                            if (data == null || data == "") {
+                                $("#box").css("display", "none");
+                            } else {
+                                //遍历结果集
+                                $.each(data, function(index, data) {
+                                    //显示在隐藏div上面
+                                    $("#box").append("<a class='link' href='#' >" + data.announcementName + "</a><br><br>");
+                                    $("#box").css("display", "block");
+                                });
+
+                            }
+
+                        }, "json");
+                    } else {
+
+                        $("#box").css("display", "none");
+                    }
+
+                $(document).on('click','.link',function(){
+
+                    $("#keyword").val($(this).text());
+                })
+
+
+                });
+
+
+        })
+    </script>
+</head>
+<body>
+
+<form action="/procurement/zhaobiao/selectByLucene.do" method="get">
+        <input type="text" id="keyword" name="keyword" >
+        <input type="submit" id="button" value="搜索"><br>
+        <div id="box"></div>
+</form>
+
+</body>
+</html>

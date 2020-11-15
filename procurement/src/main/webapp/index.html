@@ -1,0 +1,849 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>招标采购</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/zb.css"/>
+
+    <style type="text/css">
+        #keyword {
+            margin-left: 600px;
+            width: 600px;
+            height: 38px;
+            border: 1px solid #c3c3c3;
+        }
+
+
+        #box {
+            margin-left: 600px;
+            width: 600px;
+            position: absolute;
+            background-color: #F4F4FF;
+            border: 1px solid #c3c3c3;
+            display: none;
+            text-align: left
+        }
+    </style>
+
+</head>
+<body>
+<div id="info" class="box">
+    <div class="zb">
+        <img src="img/new-banner.png"/>
+    </div>
+    <br>
+    <input type="text" name="keyword" id="keyword" v-model="search"/>
+    <button class="butt" @click="btn()" style="outline: none;border: none;margin-bottom: 4px;"><img
+            src="img/2020-09-11_152226.png"/></button>
+    <br>
+    <div id="box"></div>
+
+    <div class="cs">
+        <div class="cs1">
+            <ul class="ul">
+                <li>选择地区：</li>
+            </ul>
+            <ul class="ul1">
+                <li class="li1" value="99"><a href="javascript:void(0)" @click="btn1()">全国</a></li>
+                <li class="li1" value="0"><a href="javascript:void(0)" @click="btn1()">安徽</a></li>
+                <li class="li1" value="1"><a href="javascript:void(0)" @click="btn1()">北京</a></li>
+                <li class="li1" value="2"><a href="javascript:void(0)" @click="btn1()">重庆</a></li>
+                <li class="li1" value="3"><a href="javascript:void(0)" @click="btn1()">福建</a></li>
+                <li class="li1" value="4"><a href="javascript:void(0)" @click="btn1()">甘肃</a></li>
+                <li class="li1" value="5"><a href="javascript:void(0)" @click="btn1()">广东</a></li>
+                <li class="li1" value="6"><a href="javascript:void(0)" @click="btn1()">广西</a></li>
+                <li class="li1" value="7"><a href="javascript:void(0)" @click="btn1()">贵州 </a></li>
+                <li class="li1" value="8"><a href="javascript:void(0)" @click="btn1()">海南</a></li>
+                <li class="li1" value="9"><a href="javascript:void(0)" @click="btn1()">河北</a></li>
+                <li class="li1" value="10"><a href="javascript:void(0)" @click="btn1()">河南</a></li>
+                <li class="li1" value="11"><a href="javascript:void(0)" @click="btn1()">黑龙江</a></li>
+                <li class="li1" value="12"><a href="javascript:void(0)" @click="btn1()">湖北</a></li>
+                <li class="li1" value="13"><a href="javascript:void(0)" @click="btn1()">湖南</a></li>
+                <li class="li1" value="14"><a href="javascript:void(0)" @click="btn1()">吉林</a></li>
+                <li class="li1" value="15"><a href="javascript:void(0)" @click="btn1()">江苏</a></li>
+                <li class="li1" value="16"><a href="javascript:void(0)" @click="btn1()">江西</a></li>
+                <li class="li1" value="17"><a href="javascript:void(0)" @click="btn1()">辽宁</a></li>
+                <li class="li1" value="18"><a href="javascript:void(0)" @click="btn1()">内蒙古</a></li>
+                <li class="li1" value="19"><a href="javascript:void(0)" @click="btn1()">宁夏</a></li>
+                <li class="li1" value="20"><a href="javascript:void(0)" @click="btn1()">青海</a></li>
+                <li class="li1" value="21"><a href="javascript:void(0)" @click="btn1()">山东</a></li>
+                <li class="li1" value="22"><a href="javascript:void(0)" @click="btn1()">山西</a></li>
+                <li class="li1" value="23"><a href="javascript:void(0)" @click="btn1()">陕西</a></li>
+                <li class="li1" value="24"><a href="javascript:void(0)" @click="btn1()">上海</a></li>
+                <li class="li1" value="25"><a href="javascript:void(0)" @click="btn1()">四川</a></li>
+                <li class="li1" value="26"><a href="javascript:void(0)" @click="btn1()">天津</a></li>
+                <li class="li1" value="27"><a href="javascript:void(0)" @click="btn1()">西藏</a></li>
+                <li class="li1" value="28"><a href="javascript:void(0)" @click="btn1()">新疆</a></li>
+                <li class="li1" value="29"><a href="javascript:void(0)" @click="btn1()">云南</a></li>
+                <li class="li1" value="30"><a href="javascript:void(0)" @click="btn1()">浙江</a></li>
+            </ul>
+        </div>
+
+        <div class="csbox">
+            <div class="cs1" id="cs0" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">安庆</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">蚌埠</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">巢湖</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">池州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">滁州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阜阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">合肥</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">淮北</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">淮南</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黄山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">六安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">马鞍山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宿州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">铜陵</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">芜湖</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宣城</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">亳州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs1" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">北京</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs2" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">重庆</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs3" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">福州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">龙岩</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南平</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宁德</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">莆田</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">泉州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">三明</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">厦门</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">漳州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs4" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">白银</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">定西</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">甘南</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">嘉峪关</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">金昌</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">酒泉</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">兰州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">临夏回族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">陇南</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">平凉</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">庆阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">天水</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">武威</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">张掖</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs5" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">潮州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">东莞</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">佛山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">广州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">河源</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">惠州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">江门</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">揭阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">茂名</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">梅州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">清远</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">汕头</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">汕尾</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">韶关</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">深圳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阳江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">云浮</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">湛江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">肇庆</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">中山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">珠海</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs6" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">百色</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">北海</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">防城港</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">桂林</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">贵港</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">河池</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">贺州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">来宾</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">柳州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">钦州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">梧州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">玉林</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs7" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">安顺</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">毕节</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">贵阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">六盘水</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黔东</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南苗族侗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黔南布依族苗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黔西南布依族苗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">铜仁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">遵义</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs8" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">白沙黎族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">保亭黎族苗族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">昌江黎族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">澄迈县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">定安县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">东方</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">海口</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">乐东黎族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">临高县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">陵水黎族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">琼海</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">琼中黎族苗族自治县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">三亚</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">屯昌县</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">万宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">文昌</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">五指山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">儋州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs9" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">保定</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">沧州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">承德</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">邯郸</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">衡水</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">廊坊</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">秦皇岛</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">石家庄</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">唐山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">邢台</a></li>
+
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs10" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">安阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鹤壁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">济源</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">焦作</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">开封</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">洛阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">平顶山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">三门峡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">商丘</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">新乡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">信阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">许昌</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">郑州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">周口</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">驻马店</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">漯河</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">濮阳</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs11" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">大庆</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">大兴安岭</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">哈尔滨</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鹤岗</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黑河</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鸡西</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">佳木斯</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">牡丹江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">七台河</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">齐齐哈尔</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">新乡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">双鸭山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">绥化</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">伊春</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs12" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鄂州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">恩施土家族苗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黄冈</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黄石</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">荆门</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">荆州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">潜江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">神农架林区</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">十堰</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">随州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">天门</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">武汉</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">仙桃</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">咸宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">襄阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">孝感</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宜昌</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs13" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">常德</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">长沙</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">郴州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">衡阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">怀化</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">娄底</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">邵阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">湘潭</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">湘西土家族苗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">益阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">永州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">岳阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">张家界</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">株洲</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs14" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">白城</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">白山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">长春</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">吉林</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">辽源</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">四平</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">松原</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">通化</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">延边朝鲜族自治州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs15" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">常州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">淮安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">连云港</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南京</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南通</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">苏州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宿迁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">泰州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">无锡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">徐州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">盐城</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">扬州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">镇江</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs16" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">抚州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">赣州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">吉安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">景德镇</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">九江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南昌</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">萍乡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">上饶</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">新余</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宜春</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鹰潭</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs17" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鞍山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">本溪</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">朝阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">大连</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">丹东</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">抚顺</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阜新</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">葫芦岛</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">锦州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">辽阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">盘锦</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">沈阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">铁岭</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">营口</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs18" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阿拉善盟</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">巴彦淖尔盟</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">包头</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">赤峰</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">鄂尔多斯</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">呼和浩特</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">呼伦贝尔</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">通辽</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">乌海</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">乌兰察布盟</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">锡林</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">郭勒盟</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">兴安盟</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs19" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">固原</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">石嘴山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">吴忠</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">银川</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">中卫</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs20" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">果洛藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">海北藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">海东</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">海南藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">海西蒙古族藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">黄南藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">西宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">玉树</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">藏族自治州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs21" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">滨州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">德州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">东营</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">菏泽</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">济南</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">济宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">莱芜</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">聊城</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">临沂</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">青岛</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">日照</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">泰安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">威海</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">潍坊</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">烟台</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">枣庄</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">淄博</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs22" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">长治</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">大同</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">晋城</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">晋中</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">临汾</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">吕梁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">朔州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">太原</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">忻州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阳泉</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">运城</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs23" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">安康</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宝鸡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">汉中</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">商洛</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">铜川</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">渭南</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">西安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">咸阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">延安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">榆林</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs24" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">上海</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs25" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阿坝藏族羌族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">巴中</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">成都</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">达州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">德阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">甘孜藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">广安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">广元</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">乐山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">凉山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">彝族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">眉山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">绵阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">南充</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">内江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">攀枝花</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">遂宁</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">雅安</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宜宾</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">资阳</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">自贡</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">泸州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs26" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">天津</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs27" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阿里</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">昌都</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">拉萨</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">林芝</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">那曲</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">日喀则</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">山南</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs28" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阿克苏</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">阿拉尔</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">巴音郭楞蒙古自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">博尔塔拉蒙古自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">昌吉回族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">哈密</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">和田</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">喀什</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">克拉玛依</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">克孜勒苏柯尔克孜自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">石河子</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">图木舒克</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">吐鲁番</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">乌鲁木齐</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">五家渠</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">伊犁哈萨克自治州</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs29" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">保山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">楚雄彝族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">大理白族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">德宏傣族景颇族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">迪庆藏族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">红河哈尼族彝族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">昆明</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">丽江</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">临沧</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">怒江傈傈族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">曲靖</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">思茅</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">文山壮族苗族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">西双版纳傣族自治州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">玉溪</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">昭通</a></li>
+                </ul>
+            </div>
+
+            <div class="cs1" id="cs30" style="display: none;">
+                <ul class="ul">
+                    <li></li>
+                </ul>
+                <ul class="ul1">
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">杭州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">湖州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">嘉兴</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">金华</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">丽水</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">宁波</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">绍兴</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">台州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">温州</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">舟山</a></li>
+                    <li class="li2"><a href="javascript:void(0)" @click="btn1()">衢州</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="cs1">
+            <ul class="ul">
+                <li>信息类型：</li>
+            </ul>
+            <ul class="ul1">
+                <li class="zb1"><a href="javascript:void(0)" @click="btn1()">全部</a></li>
+                <li class="zb1"><a href="javascript:void(0)" @click="btn1()">公开招标公告</a></li>
+                <li class="zb1"><a href="javascript:void(0)" @click="btn1()">中标公告</a></li>
+            </ul>
+        </div>
+        <div class="cs1">
+            <ul class="ul">
+                <li>选择时间：</li>
+            </ul>
+            <ul class="ul1">
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">不限</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">今日</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">近一周</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">近一个月</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">近三个月</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">近半年</a></li>
+                <li class="date"><a href="javascript:void(0)" @click="btn1()">近一年</a></li>
+            </ul>
+
+
+            <ul id="message" class="ul2">
+                <li>已选条件：</li>
+                <li><span id="address" class="sp"></span></li>
+                <li><span id="annoType" class="sp1"></span></li>
+                <li><span id="time" class="sp1"></span></li>
+                <li>
+                    <button @click="btn2()" class="bu"><span>清除已选条件</span></button>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+    <div style="margin-left: 780px; color: red; font-size: 18px">
+        <span id="msg" style="display: none"></span>
+    </div>
+    <div id="table">
+        <table class="table " style="width: 1100px;margin: 0 auto;margin-top: 30px;">
+
+            <thead>
+            <tr>
+                <th>地区</th>
+                <th>项目类型</th>
+                <th>招标采购标题</th>
+                <th>日期</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="zhaobiaoInfo" v-for="(z) in zhaobiaoList">
+                <td>{{z.administrative}}</td>
+                <td>{{z.annoType}}</td>
+                <td>
+                    <a :href="'detail1.html?id='+z.id" target="_blank">{{z.announcementName | ellipsis}}</a>
+                </td>
+                <td>{{z.time}}</td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="js/zb.js"></script>
+<script src="/procurement/js/vuejs-2.5.16.js"></script>
+<script src="/procurement/js/axios-0.18.0.js"></script>
+<script src="/procurement/js/index.js"></script>
+
+<script>
+    $(function () {
+        //0.键盘抬起事件 通过div中的ID获取input输入框
+        $("#keyword").keyup(function () {
+            $("#box").empty();
+            //1.用trim()获取去除空格后的输入框的值
+            var keyword = $(this).val().trim();
+
+            //判断用户输入的是否为空,如果为空不发送ajax
+            if (keyword != null && keyword != "") {
+                //2 发送ajax
+                $.get("/procurement/zhaobiao/selectTenByLucene.do", {keyword: keyword}, function (data) {
+
+                    if (data == null || data == "") {
+                        $("#box").css("display", "none");
+                    } else {
+                        //遍历结果集
+                        $.each(data, function (index, data) {
+                            //显示在隐藏div上面
+                            $("#box").append("<a class='link' href='#'>" + data.announcementName + "</a><br><br>");
+                            $("#box").show();
+
+                        });
+
+                    }
+
+                }, "json");
+
+
+            } else {
+
+                $("#box").css("display", "none");
+            }
+        });
+
+        $(document).on('click', '.link', function () {
+
+            $("#keyword").val($(this).text());
+            var keyword = $(this).text();
+            $.get("/procurement/zhaobiao/selectByLucene.do", {keyword: keyword}, function (data) {
+
+                $(".zhaobiaoInfo").attr('style','display: none');
+                $(".info1").attr('style','display: none');
+
+                //遍历结果集
+                $.each(data, function (index, data) {
+
+                    //切割字符串
+                    if (data.announcementName.length>30){
+                        data.announcementName=data.announcementName.slice(0,30)+'...';
+                    }
+                    //遍历在tbody里面
+                    $("tbody").append("<tr class='info1'>" +
+                        "<td>" + data.time + "</td>" +
+                        "<td>" + data.administrative + "</td>" +
+                        "<td>" + data.annoType + "</td>" +
+                        "<td>" +
+                        "<a " + "href='"+"detail1.html?id="+data.id+"'"+ " target='"+"_blank'"+">"+data.announcementName+"</a>"+
+                        "</td>" +
+                        "</tr>");
+                });
+
+
+            }, "json");
+
+        })
+        $("#keyword").blur(function () {
+            $("#box").slideUp("fast");
+        })
+
+    })
+</script>
+
+</body>
+</html>

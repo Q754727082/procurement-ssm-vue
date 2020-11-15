@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dataset.dao.ZhaobiaoDao">
+
+    <resultMap type="com.dataset.entity.Zhaobiao" id="ZhaobiaoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="announcementName" column="announcement_name" jdbcType="VARCHAR"/>
+        <result property="projectName" column="project_name" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="time" column="time" jdbcType="VARCHAR"/>
+        <result property="buyer" column="buyer" jdbcType="VARCHAR"/>
+        <result property="item" column="item" jdbcType="VARCHAR"/>
+        <result property="purchasingUnit" column="purchasing_unit" jdbcType="VARCHAR"/>
+        <result property="administrative" column="administrative" jdbcType="VARCHAR"/>
+        <result property="announcementTime" column="announcement_time" jdbcType="VARCHAR"/>
+        <result property="expert" column="expert" jdbcType="VARCHAR"/>
+        <result property="amount" column="amount" jdbcType="VARCHAR"/>
+        <result property="contactPerson" column="contact_person" jdbcType="VARCHAR"/>
+        <result property="contactNumber" column="contact_number" jdbcType="VARCHAR"/>
+        <result property="xPurchasingUnit" column="x_purchasing_unit" jdbcType="VARCHAR"/>
+        <result property="unitAddress" column="unit_address" jdbcType="VARCHAR"/>
+        <result property="unitContact" column="unit_contact" jdbcType="VARCHAR"/>
+        <result property="nameOfAgent" column="name_of_agent" jdbcType="VARCHAR"/>
+        <result property="agencyAddress" column="agency_address" jdbcType="VARCHAR"/>
+        <result property="agentContact" column="agent_contact" jdbcType="VARCHAR"/>
+        <result property="annoType" column="annoType" jdbcType="VARCHAR"/>
+        <result property="url" column="url" jdbcType="VARCHAR"/>
+        <result property="tenderTime" column="tender_time" jdbcType="VARCHAR"/>
+        <result property="documentPrice" column="document_price" jdbcType="VARCHAR"/>
+        <result property="placeTender" column="place_tender" jdbcType="VARCHAR"/>
+        <result property="openingTime" column="opening_time" jdbcType="VARCHAR"/>
+        <result property="openingPlace" column="opening_place" jdbcType="VARCHAR"/>
+        <result property="budgetAmount" column="budget_amount" jdbcType="VARCHAR"/>
+        <result property="purchasingTime" column="purchasing_time" jdbcType="VARCHAR"/>
+        <result property="placePurchase" column="place_purchase" jdbcType="VARCHAR"/>
+        <result property="documentDeadline" column="document_deadline" jdbcType="VARCHAR"/>
+        <result property="prequalificationTime" column="prequalification_time" jdbcType="VARCHAR"/>
+        <result property="firstDate" column="first_date" jdbcType="VARCHAR"/>
+        <result property="correctionDate" column="correction_date" jdbcType="VARCHAR"/>
+        <result property="resSubmissionLocation" column="res_submission_location" jdbcType="VARCHAR"/>
+        <result property="resFileTime" column="res_file_time" jdbcType="VARCHAR"/>
+        <result property="resOpeningLocation" column="res_opening_location" jdbcType="VARCHAR"/>
+        <result property="singlePerson" column="single_person" jdbcType="VARCHAR"/>
+        <result property="totalAmount" column="total_amount" jdbcType="VARCHAR"/>
+        <result property="corrections" column="corrections" jdbcType="VARCHAR"/>
+        <result property="governmentLocal" column="government_local" jdbcType="VARCHAR"/>
+        <result property="gxxText" column="gxx_text" jdbcType="VARCHAR"/>
+<!--        <result property="area1" column="area1" jdbcType="VARCHAR"/>-->
+    </resultMap>
+
+    <!--查询所有json格式数据-->
+    <select id="findAll" resultMap="ZhaobiaoMap">
+        select * from zhaobiao
+    </select>
+
+    <!--查询所有-->
+    <select id="queryAllNoLimit" resultMap="ZhaobiaoMap">
+        select * from zhaobiao
+    </select>
+
+    <!--每次查询10条记录-->
+    <select id="selectTen" resultMap="ZhaobiaoMap">
+        select * from zhaobiao limit #{pageNo},10
+    </select>
+
+    <!--每次查询10条记录json格式数据-->
+    <select id="selectTenJson" resultMap="ZhaobiaoMap">
+        select * from zhaobiao limit #{pageNo},10
+    </select>
+
+    <!--查询30条数据-->
+    <select id="findSimpleMessage" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao limit 0,30
+    </select>
+
+    <!--每次查询10条数据-->
+    <select id="selectSimpleMessage" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao limit #{pageNo},10
+    </select>
+
+    <!--查询10条记录-->
+    <select id="findTen" resultMap="ZhaobiaoMap">
+        select * from zhaobiao limit 10
+    </select>
+
+    <!--根据关键字模糊查询-->
+    <select id="queryByKeyword" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao where announcement_name like "%"#{keyword}"%"
+    </select>
+
+    <!--根据关键字模糊查询初始10条记录-->
+    <select id="findByKeyword" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao where announcement_name like "%"#{keyword}"%" limit 0,10
+    </select>
+
+    <!--根据关键字每次模糊查询十条记录-->
+    <select id="selectByKeyword" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao where announcement_name like "%"#{keyword}"%" limit #{pageNo},10
+    </select>
+
+    <!--多条件查询30条（省份&城市：area1）-->
+    <!--<select id="queryByFix" resultMap="ZhaobiaoMap">
+        SELECT * FROM (SELECT *,CONCAT(z.`address`,z.`administrative`) area1 FROM zhaobiao z ) zzz
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="area1 != null and area1 != ''">
+                and zzz.area1=#{area1}
+            </if>
+            <if test="annoType != null and annoType != ''">
+                and zzz.annoType like "%"#{annoType}"%"
+            </if>
+            <if test="day !=null and day != ''">
+                and TIME BETWEEN CURRENT_DATE()-#{day} AND SYSDATE();
+            </if>
+        </trim>
+&#45;&#45;         limit 0,30
+    </select>-->
+
+    <!--多条件查询30条-->
+    <select id="queryByFix" resultMap="ZhaobiaoMap">
+        SELECT id,announcement_name,time,administrative,annoType FROM zhaobiao
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="address != null and address != ''">
+                and address=#{address}
+            </if>
+            <if test="annoType != null and annoType != ''">
+                and annoType=#{annoType}
+            </if>
+            <if test="day !=null and day != ''">
+                and DATE_SUB(CURDATE(), INTERVAL #{day} DAY) &lt;= DATE(TIME)
+            </if>
+            <if test="keyword !=null and keyword != ''">
+                and announcement_name like "%"#{keyword}"%"
+            </if>
+        </trim>
+        limit 0,30
+    </select>
+
+    <!--每次多条件查询10条-->
+    <select id="selectByFix" resultMap="ZhaobiaoMap">
+        select id,announcement_name,time,administrative,annoType from zhaobiao
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="address != null and address != ''">
+                and address=#{address}
+            </if>
+            <if test="annoType != null and annoType != ''">
+                and annoType=#{annoType}
+            </if>
+            <if test="day !=null and day != ''">
+                and DATE_SUB(CURDATE(), INTERVAL #{day} DAY) &lt;= DATE(TIME)
+            </if>
+            <if test="keyword !=null and keyword != ''">
+                and announcement_name like "%"#{keyword}"%"
+            </if>
+        </trim>
+        limit #{pageNo},10
+    </select>
+
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ZhaobiaoMap">
+        select
+          id, announcement_name, project_name, address, time, buyer, item, purchasing_unit, administrative, announcement_time, expert, amount, contact_person, contact_number, x_purchasing_unit, unit_address, unit_contact, name_of_agent, agency_address, agent_contact, annoType, url, tender_time, document_price, place_tender, opening_time, opening_place, budget_amount, purchasing_time, place_purchase, document_deadline, prequalification_time, first_date, correction_date, res_submission_location, res_file_time, res_opening_location, single_person, total_amount, corrections, government_local, gxx_text
+        from zhaobiao
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ZhaobiaoMap">
+        select
+          id, announcement_name, project_name, address, time, buyer, item, purchasing_unit, administrative, announcement_time, expert, amount, contact_person, contact_number, x_purchasing_unit, unit_address, unit_contact, name_of_agent, agency_address, agent_contact, annoType, url, tender_time, document_price, place_tender, opening_time, opening_place, budget_amount, purchasing_time, place_purchase, document_deadline, prequalification_time, first_date, correction_date, res_submission_location, res_file_time, res_opening_location, single_person, total_amount, corrections, government_local, gxx_text
+        from zhaobiao
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ZhaobiaoMap">
+        select
+        id, announcement_name, project_name, address, time, buyer, item, purchasing_unit, administrative,
+        announcement_time, expert, amount, contact_person, contact_number, x_purchasing_unit, unit_address,
+        unit_contact, name_of_agent, agency_address, agent_contact, annoType, url, tender_time, document_price,
+        place_tender, opening_time, opening_place, budget_amount, purchasing_time, place_purchase, document_deadline,
+        prequalification_time, first_date, correction_date, res_submission_location, res_file_time,
+        res_opening_location, single_person, total_amount, corrections, government_local, gxx_text
+        from zhaobiao
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="announcementName != null and announcementName != ''">
+                and announcement_name = #{announcementName}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and project_name = #{projectName}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="time != null and time != ''">
+                and time = #{time}
+            </if>
+            <if test="buyer != null and buyer != ''">
+                and buyer = #{buyer}
+            </if>
+            <if test="item != null and item != ''">
+                and item = #{item}
+            </if>
+            <if test="purchasingUnit != null and purchasingUnit != ''">
+                and purchasing_unit = #{purchasingUnit}
+            </if>
+            <if test="administrative != null and administrative != ''">
+                and administrative = #{administrative}
+            </if>
+            <if test="announcementTime != null and announcementTime != ''">
+                and announcement_time = #{announcementTime}
+            </if>
+            <if test="expert != null and expert != ''">
+                and expert = #{expert}
+            </if>
+            <if test="amount != null and amount != ''">
+                and amount = #{amount}
+            </if>
+            <if test="contactPerson != null and contactPerson != ''">
+                and contact_person = #{contactPerson}
+            </if>
+            <if test="contactNumber != null and contactNumber != ''">
+                and contact_number = #{contactNumber}
+            </if>
+            <if test="xPurchasingUnit != null and xPurchasingUnit != ''">
+                and x_purchasing_unit = #{xPurchasingUnit}
+            </if>
+            <if test="unitAddress != null and unitAddress != ''">
+                and unit_address = #{unitAddress}
+            </if>
+            <if test="unitContact != null and unitContact != ''">
+                and unit_contact = #{unitContact}
+            </if>
+            <if test="nameOfAgent != null and nameOfAgent != ''">
+                and name_of_agent = #{nameOfAgent}
+            </if>
+            <if test="agencyAddress != null and agencyAddress != ''">
+                and agency_address = #{agencyAddress}
+            </if>
+            <if test="agentContact != null and agentContact != ''">
+                and agent_contact = #{agentContact}
+            </if>
+            <if test="annoType != null and annoType != ''">
+                and annoType = #{annoType}
+            </if>
+            <if test="url != null and url != ''">
+                and url = #{url}
+            </if>
+            <if test="tenderTime != null and tenderTime != ''">
+                and tender_time = #{tenderTime}
+            </if>
+            <if test="documentPrice != null and documentPrice != ''">
+                and document_price = #{documentPrice}
+            </if>
+            <if test="placeTender != null and placeTender != ''">
+                and place_tender = #{placeTender}
+            </if>
+            <if test="openingTime != null and openingTime != ''">
+                and opening_time = #{openingTime}
+            </if>
+            <if test="openingPlace != null and openingPlace != ''">
+                and opening_place = #{openingPlace}
+            </if>
+            <if test="budgetAmount != null and budgetAmount != ''">
+                and budget_amount = #{budgetAmount}
+            </if>
+            <if test="purchasingTime != null and purchasingTime != ''">
+                and purchasing_time = #{purchasingTime}
+            </if>
+            <if test="placePurchase != null and placePurchase != ''">
+                and place_purchase = #{placePurchase}
+            </if>
+            <if test="documentDeadline != null and documentDeadline != ''">
+                and document_deadline = #{documentDeadline}
+            </if>
+            <if test="prequalificationTime != null and prequalificationTime != ''">
+                and prequalification_time = #{prequalificationTime}
+            </if>
+            <if test="firstDate != null and firstDate != ''">
+                and first_date = #{firstDate}
+            </if>
+            <if test="correctionDate != null and correctionDate != ''">
+                and correction_date = #{correctionDate}
+            </if>
+            <if test="resSubmissionLocation != null and resSubmissionLocation != ''">
+                and res_submission_location = #{resSubmissionLocation}
+            </if>
+            <if test="resFileTime != null and resFileTime != ''">
+                and res_file_time = #{resFileTime}
+            </if>
+            <if test="resOpeningLocation != null and resOpeningLocation != ''">
+                and res_opening_location = #{resOpeningLocation}
+            </if>
+            <if test="singlePerson != null and singlePerson != ''">
+                and single_person = #{singlePerson}
+            </if>
+            <if test="totalAmount != null and totalAmount != ''">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="corrections != null and corrections != ''">
+                and corrections = #{corrections}
+            </if>
+            <if test="governmentLocal != null and governmentLocal != ''">
+                and government_local = #{governmentLocal}
+            </if>
+            <if test="gxxText != null and gxxText != ''">
+                and gxx_text = #{gxxText}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into zhaobiao(announcement_name, project_name, address, time, buyer, item, purchasing_unit, administrative, announcement_time, expert, amount, contact_person, contact_number, x_purchasing_unit, unit_address, unit_contact, name_of_agent, agency_address, agent_contact, annoType, url, tender_time, document_price, place_tender, opening_time, opening_place, budget_amount, purchasing_time, place_purchase, document_deadline, prequalification_time, first_date, correction_date, res_submission_location, res_file_time, res_opening_location, single_person, total_amount, corrections, government_local, gxx_text)
+        values (#{announcementName}, #{projectName}, #{address}, #{time}, #{buyer}, #{item}, #{purchasingUnit}, #{administrative}, #{announcementTime}, #{expert}, #{amount}, #{contactPerson}, #{contactNumber}, #{xPurchasingUnit}, #{unitAddress}, #{unitContact}, #{nameOfAgent}, #{agencyAddress}, #{agentContact}, #{annoType}, #{url}, #{tenderTime}, #{documentPrice}, #{placeTender}, #{openingTime}, #{openingPlace}, #{budgetAmount}, #{purchasingTime}, #{placePurchase}, #{documentDeadline}, #{prequalificationTime}, #{firstDate}, #{correctionDate}, #{resSubmissionLocation}, #{resFileTime}, #{resOpeningLocation}, #{singlePerson}, #{totalAmount}, #{corrections}, #{governmentLocal}, #{gxxText})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update zhaobiao
+        <set>
+            <if test="announcementName != null and announcementName != ''">
+                announcement_name = #{announcementName},
+            </if>
+            <if test="projectName != null and projectName != ''">
+                project_name = #{projectName},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="time != null and time != ''">
+                time = #{time},
+            </if>
+            <if test="buyer != null and buyer != ''">
+                buyer = #{buyer},
+            </if>
+            <if test="item != null and item != ''">
+                item = #{item},
+            </if>
+            <if test="purchasingUnit != null and purchasingUnit != ''">
+                purchasing_unit = #{purchasingUnit},
+            </if>
+            <if test="administrative != null and administrative != ''">
+                administrative = #{administrative},
+            </if>
+            <if test="announcementTime != null and announcementTime != ''">
+                announcement_time = #{announcementTime},
+            </if>
+            <if test="expert != null and expert != ''">
+                expert = #{expert},
+            </if>
+            <if test="amount != null and amount != ''">
+                amount = #{amount},
+            </if>
+            <if test="contactPerson != null and contactPerson != ''">
+                contact_person = #{contactPerson},
+            </if>
+            <if test="contactNumber != null and contactNumber != ''">
+                contact_number = #{contactNumber},
+            </if>
+            <if test="xPurchasingUnit != null and xPurchasingUnit != ''">
+                x_purchasing_unit = #{xPurchasingUnit},
+            </if>
+            <if test="unitAddress != null and unitAddress != ''">
+                unit_address = #{unitAddress},
+            </if>
+            <if test="unitContact != null and unitContact != ''">
+                unit_contact = #{unitContact},
+            </if>
+            <if test="nameOfAgent != null and nameOfAgent != ''">
+                name_of_agent = #{nameOfAgent},
+            </if>
+            <if test="agencyAddress != null and agencyAddress != ''">
+                agency_address = #{agencyAddress},
+            </if>
+            <if test="agentContact != null and agentContact != ''">
+                agent_contact = #{agentContact},
+            </if>
+            <if test="annoType != null and annoType != ''">
+                annoType = #{annoType},
+            </if>
+            <if test="url != null and url != ''">
+                url = #{url},
+            </if>
+            <if test="tenderTime != null and tenderTime != ''">
+                tender_time = #{tenderTime},
+            </if>
+            <if test="documentPrice != null and documentPrice != ''">
+                document_price = #{documentPrice},
+            </if>
+            <if test="placeTender != null and placeTender != ''">
+                place_tender = #{placeTender},
+            </if>
+            <if test="openingTime != null and openingTime != ''">
+                opening_time = #{openingTime},
+            </if>
+            <if test="openingPlace != null and openingPlace != ''">
+                opening_place = #{openingPlace},
+            </if>
+            <if test="budgetAmount != null and budgetAmount != ''">
+                budget_amount = #{budgetAmount},
+            </if>
+            <if test="purchasingTime != null and purchasingTime != ''">
+                purchasing_time = #{purchasingTime},
+            </if>
+            <if test="placePurchase != null and placePurchase != ''">
+                place_purchase = #{placePurchase},
+            </if>
+            <if test="documentDeadline != null and documentDeadline != ''">
+                document_deadline = #{documentDeadline},
+            </if>
+            <if test="prequalificationTime != null and prequalificationTime != ''">
+                prequalification_time = #{prequalificationTime},
+            </if>
+            <if test="firstDate != null and firstDate != ''">
+                first_date = #{firstDate},
+            </if>
+            <if test="correctionDate != null and correctionDate != ''">
+                correction_date = #{correctionDate},
+            </if>
+            <if test="resSubmissionLocation != null and resSubmissionLocation != ''">
+                res_submission_location = #{resSubmissionLocation},
+            </if>
+            <if test="resFileTime != null and resFileTime != ''">
+                res_file_time = #{resFileTime},
+            </if>
+            <if test="resOpeningLocation != null and resOpeningLocation != ''">
+                res_opening_location = #{resOpeningLocation},
+            </if>
+            <if test="singlePerson != null and singlePerson != ''">
+                single_person = #{singlePerson},
+            </if>
+            <if test="totalAmount != null and totalAmount != ''">
+                total_amount = #{totalAmount},
+            </if>
+            <if test="corrections != null and corrections != ''">
+                corrections = #{corrections},
+            </if>
+            <if test="governmentLocal != null and governmentLocal != ''">
+                government_local = #{governmentLocal},
+            </if>
+            <if test="gxxText != null and gxxText != ''">
+                gxx_text = #{gxxText},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from zhaobiao where id = #{id}
+    </delete>
+
+</mapper>
